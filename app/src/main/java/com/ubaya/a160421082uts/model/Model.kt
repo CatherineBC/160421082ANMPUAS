@@ -13,11 +13,11 @@ data class User(
 )
 
 data class News(
-    val id:String?,
+    val id:String,
     val title:String,
     val imageURL : String,
     val date : Date,
     val description: String,
     val content : List<String>,
-    val author_id : String,
+    val author_name : String,
 )
