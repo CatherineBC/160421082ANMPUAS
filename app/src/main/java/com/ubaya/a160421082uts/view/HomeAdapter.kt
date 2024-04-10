@@ -29,6 +29,7 @@ class HomeAdapter(val newsList:ArrayList<News>)  : RecyclerView.Adapter<HomeAdap
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         holder.binding.txtJudulBerita.text = newsList[position].title
         holder.binding.txtAuthor.text = newsList[position].author_id
+        holder.binding.txtDeskripsi.text = newsList[position].description
 
 //        holder.binding.btnRead.setOnClickListener {
 //            val action = StudentListFragmentDirections.actionStudentDetail(studentList[position].id.toString())

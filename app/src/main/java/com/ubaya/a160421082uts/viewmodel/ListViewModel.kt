@@ -24,7 +24,7 @@ class ListViewModel(application: Application): AndroidViewModel(application){
         newsLoadErrorLD.value = false
 
         queue = Volley.newRequestQueue(getApplication())
-        val url = "http://adv.jitusolution.com/student.php"
+        val url = "http://10.0.2.2/ANMP_UTS/cakenews.json"
 
         val stringRequest = StringRequest(
             Request.Method.GET, url,
