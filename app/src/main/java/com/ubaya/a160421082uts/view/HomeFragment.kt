@@ -1,5 +1,7 @@
 package com.ubaya.a160421082uts.view
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -21,6 +23,8 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel:ListViewModel
     private val homeListAdapter  = HomeAdapter(arrayListOf())
     private lateinit var binding:FragmentHomeBinding
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

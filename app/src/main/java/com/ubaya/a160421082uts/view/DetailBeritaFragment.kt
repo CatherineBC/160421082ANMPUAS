@@ -40,39 +40,49 @@ class DetailBeritaFragment : Fragment() {
 
     private fun observeViewModel() {
         var contentIndex = 0
+
         viewModel.newsLD.observe(viewLifecycleOwner, Observer {
             var News = it
             Picasso.get().load(viewModel.newsLD.value?.imageURL).into(binding.imageView2)
             binding.txtAuthorDetil.setText(News.author_name)
             binding.txtJudulDetil.setText(News.title)
             binding.txtIsiContent.setText(News.content[contentIndex])
+
             if (contentIndex == 0) {
                 binding.btnBack.isEnabled = false
-            }
-            else if(contentIndex <= 0){
-                contentIndex == 0
-                binding.btnBack.isEnabled = false
-
+            } else {
+                binding.btnBack.isEnabled = true
             }
 
-
+            if (contentIndex == News.content.size - 1) {
+                binding.btnNext.isEnabled = false
+            } else {
+                binding.btnNext.isEnabled = true
+            }
 
             binding.btnNext?.setOnClickListener {
-                Toast.
-                if (contentIndex == News.content.size-1) {
+                if (contentIndex < News.content.size - 1) {
+                    contentIndex++
+                    binding.txtIsiContent.text = News.content[contentIndex]
+                }
+
+                if (contentIndex == News.content.size - 1) {
                     binding.btnNext.isEnabled = false
                 }
-                contentIndex++
+
                 binding.btnBack.isEnabled = true
-
-                binding.txtIsiContent.text = News.content[contentIndex]
-
             }
-            binding.btnBack?.setOnClickListener {
-                contentIndex--
-                binding.btnNext.isEnabled = true
-                binding.txtIsiContent.text = News.content[contentIndex]
 
+            binding.btnBack?.setOnClickListener {
+                if (contentIndex > 0) {
+                    contentIndex--
+                    binding.txtIsiContent.text = News.content[contentIndex]
+                }
+
+                if (contentIndex == 0) {
+                    binding.btnBack.isEnabled = false
+                }
+                binding.btnNext.isEnabled = true
             }
         })
 

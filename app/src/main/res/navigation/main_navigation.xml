@@ -3,45 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/HomeFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/HomeFragment"
         android:name="com.ubaya.a160421082uts.view.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/actionBaca"
             app:destination="@id/detailBeritaFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.ubaya.a160421082uts.view.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/actionRegistration"
-            app:destination="@id/registrasiFragment" />
-        <action
-            android:id="@+id/actionHomeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registrasiFragment"
-        android:name="com.ubaya.a160421082uts.view.RegistrasiFragment"
-        android:label="fragment_registrasi"
-        tools:layout="@layout/fragment_registrasi" >
-        <action
-            android:id="@+id/actionLogin"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/actionProfile"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailBeritaFragment"
         android:name="com.ubaya.a160421082uts.view.DetailBeritaFragment"
         android:label="fragment_detail_berita"
-        tools:layout="@layout/fragment_detail_berita" >
+        tools:layout="@layout/fragment_detail_berita">
         <argument
             android:name="news_id"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.ubaya.a160421082uts.view.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
