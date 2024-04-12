@@ -1,18 +1,19 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
-$c = new mysqli("localhost", "root", "", "anmp_uts");
+$c = new mysqli("localhost", "root", "", "ANMP_UTS");
 
 if ($c->connect_errno) {
-    $arrayerror = array('result' => 'ERROR',
-        'msg' => 'Failed to connect DB');
+    $arrayerror = array(
+        'result' => 'ERROR',
+        'msg' => 'Failed to connect DB'
+    );
     echo json_encode($arrayerror);
     die();
 }
 
-if (isset($_POST['pass']) && isset($_POST['username'])) {
-    $pass = $_POST['pass'];
-    $username = $_POST['username'];
-    $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$pass'";
+if (isset($_POST['userid'])) {
+    $userId = $_POST['userid'];
+    $sql = "SELECT * FROM user WHERE id = '$userId' ";
 
     $result = $c->query($sql);
 

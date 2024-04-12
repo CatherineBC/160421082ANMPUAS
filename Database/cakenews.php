@@ -1,0 +1,111 @@
+<?php
+$list_berita_detail = [
+    [
+    "id"=> "1",
+    "title" =>"Delicious Chocolate Cake",
+    "imageURL"=> "https://sallysbakingaddiction.com/wp-content/uploads/2013/04/triple-chocolate-cake-4.jpg",
+    "date" => "2024-04-10",
+    "description" =>"Indulge in the rich and decadent flavors of a chocolate cake.",
+    "content"=> [
+      "Discover the secret recipe for the most delicious chocolate cake.",
+      "Learn how to make a moist and fudgy chocolate cake from scratch.",
+      "Get tips for decorating the perfect chocolate cake for any occasion."
+    ],
+    "author_name"=> "Catherine"
+],
+[
+    "id"=> "2",
+    "title"=> "Classic Vanilla Cake",
+    "imageURL"=> "https://www.seriouseats.com/thmb/aJRoRhN0yFe8LXFz1CGJ_pekjp0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2017__05__20170412-vanilla-layer-cake-vicky-wasik-23-5da8c6517dcd43da91f048a75f6e8bc5.jpg",
+    "date"=> "2024-04-09",
+    "description"=> "Experience the timeless taste of a classic vanilla cake.",
+    "content"=> [
+      "Learn how to bake a fluffy and moist vanilla cake.",
+      "Discover creative ways to add flavor variations to your vanilla cake.",
+      "Get expert tips for frosting and decorating a beautiful vanilla cake."
+    ],
+    "author_name"=> "Baba"
+],
+  [
+    "id"=> "3",
+    "title"=> "Decadent Red Velvet Cake",
+    "imageURL"=> "https://handletheheat.com/wp-content/uploads/2013/04/red-velvet-cake-recipe-SQUARE.jpg",
+    "date"=> "2024-04-08",
+    "description"=> "Indulge in the rich and velvety goodness of a red velvet cake.",
+    "content"=> [
+      "Uncover the history and origins of red velvet cake.",
+      "Learn how to achieve the perfect balance of flavors in a red velvet cake.",
+      "Discover unique frosting ideas to complement your red velvet creation."
+    ],
+    "author_name"=> "Nunu"
+],
+  [
+    "id"=> "4",
+    "title"=> "Exquisite Lemon Cake",
+    "imageURL"=> "https://www.recipetineats.com/wp-content/uploads/2021/09/Lemon-Cake-with-Lemon-Frosting_85-SQ.jpg",
+    "date"=> "2024-04-07",
+    "description"=> "Delight your taste buds with the refreshing tang of a lemon cake.",
+    "content"=> [
+      "Master the art of baking a moist and zesty lemon cake.",
+      "Explore creative ways to incorporate lemon curd into your cake.",
+      "Get inspired by lemon cake recipes from around the world."
+    ],
+    "author_name"=> "Catherine"
+],
+  [
+    "id"=> "5",
+    "title"=> "Mouthwatering Carrot Cake",
+    "imageURL"=> "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2007/2/16/0/ry0401_carrotcake.jpg.rend.hgtvcom.1280.1280.suffix/1552488933139.jpeg",
+    "date"=> "2024-04-06",
+    "description"=> "Savor the goodness of a moist and flavorful carrot cake.",
+    "content"=> [
+      "Learn how to make a carrot cake that is packed with carrots and spices.",
+      "Discover delicious cream cheese frosting recipes to pair with your carrot cake.",
+      "Get tips for adding unique twists to your carrot cake, such as nuts or raisins."
+    ],
+    "author_name"=> "Bubu"
+],
+  [
+    "id"=> "6",
+    "title"=> "Irresistible Strawberry Shortcake",
+    "imageURL"=> "https://cloudinary-cdn.whisk.com/image/upload/g_auto,c_fill,q_60,f_auto,h_630,w_1200/v1675056627/v3/user-recipes/7f627239b72ad36a3a7c2c7a57ef0e97.jpg",
+    "date"=> "2024-04-05",
+    "description"=> "Indulge in the sweetness of a strawberry shortcake dessert.",
+    "content"=> [
+      "Learn how to perfectly layer fluffy cake, fresh strawberries, and whipped cream.",
+      "Discover variations of strawberry shortcake, such as using different fruit fillings.",
+      "Get inspired by creative presentation ideas for your strawberry shortcake."
+    ],
+    "author_name"=> "Baba"
+],
+  [
+    "id"=> "7",
+    "title"=> "Decadent Black Forest Cake",
+    "imageURL"=> "https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/sasefoto/original/44336_black-forest.JPG",
+    "date"=> "2024-04-04",
+    "description"=> "Indulge in the rich flavors of chocolate and cherries in a black forest cake.",
+    "content"=> [
+      "Learn how to make a classic black forest cake with layers of chocolate cake, cherries, and whipped cream.",
+      "Discover tips for achieving the perfect balance of flavors in your black forest cake.",
+      "Get creative with decorations, such as chocolate shavings and maraschino cherries."
+    ],
+    "author_name"=> "Cat"
+  ]
+
+    ];
+
+if (isset($_GET['id'])){
+    $selectedId = $_GET['id'];
+    $berita_detail = null;
+    for($i=0; $i < count($list_berita_detail); $i++)
+    {
+        if($list_berita_detail[$i]['id'] == $selectedId){
+            $berita_detail = $list_berita_detail[$i];
+            break;
+        }
+    }
+    echo json_encode($berita_detail);
+}
+else{
+    echo json_encode($list_berita_detail);
+}
