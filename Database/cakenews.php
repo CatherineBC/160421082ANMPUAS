@@ -17,7 +17,7 @@ $list_berita_detail = [
     "id"=> "2",
     "title"=> "Classic Vanilla Cake",
     "imageURL"=> "https://www.seriouseats.com/thmb/aJRoRhN0yFe8LXFz1CGJ_pekjp0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2017__05__20170412-vanilla-layer-cake-vicky-wasik-23-5da8c6517dcd43da91f048a75f6e8bc5.jpg",
-    "date"=> "2024-04-09",
+    "date"=> "2024-04-11",
     "description"=> "Experience the timeless taste of a classic vanilla cake.",
     "content"=> [
       "Learn how to bake a fluffy and moist vanilla cake.",
@@ -30,7 +30,7 @@ $list_berita_detail = [
     "id"=> "3",
     "title"=> "Decadent Red Velvet Cake",
     "imageURL"=> "https://handletheheat.com/wp-content/uploads/2013/04/red-velvet-cake-recipe-SQUARE.jpg",
-    "date"=> "2024-04-08",
+    "date"=> "2024-04-13",
     "description"=> "Indulge in the rich and velvety goodness of a red velvet cake.",
     "content"=> [
       "Uncover the history and origins of red velvet cake.",
@@ -43,7 +43,7 @@ $list_berita_detail = [
     "id"=> "4",
     "title"=> "Exquisite Lemon Cake",
     "imageURL"=> "https://www.recipetineats.com/wp-content/uploads/2021/09/Lemon-Cake-with-Lemon-Frosting_85-SQ.jpg",
-    "date"=> "2024-04-07",
+    "date"=> "2024-04-15",
     "description"=> "Delight your taste buds with the refreshing tang of a lemon cake.",
     "content"=> [
       "Master the art of baking a moist and zesty lemon cake.",
@@ -107,5 +107,8 @@ if (isset($_GET['id'])){
     echo json_encode($berita_detail);
 }
 else{
-    echo json_encode($list_berita_detail);
+  usort($list_berita_detail, function ($a, $b) {
+    return strtotime($b['date']) - strtotime($a['date']);
+});
+echo json_encode($list_berita_detail);
 }

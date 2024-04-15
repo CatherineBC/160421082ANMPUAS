@@ -55,7 +55,7 @@ class HomeAdapter(val newsList:ArrayList<News>)  : RecyclerView.Adapter<HomeAdap
     }
     fun updateNewsList(newNewsList: ArrayList<News>) {
         newsList.clear()
-        newsList.addAll(newNewsList.sortedByDescending { it.date })
+        newsList.addAll(newNewsList)
         notifyDataSetChanged()
     }
 }
