@@ -46,44 +46,44 @@ class DetailBeritaFragment : Fragment() {
             Picasso.get().load(viewModel.newsLD.value?.imageURL).into(binding.imageView2)
             binding.txtAuthorDetil.setText(News.author_name)
             binding.txtJudulDetil.setText(News.title)
-            binding.txtIsiContent.setText(News.content[contentIndex])
+            binding.txtIsiContent.setText(News.content)
 
-            if (contentIndex == 0) {
-                binding.btnBack.isEnabled = false
-            } else {
-                binding.btnBack.isEnabled = true
-            }
+//            if (contentIndex == 0) {
+//                binding.btnBack.isEnabled = false
+//            } else {
+//                binding.btnBack.isEnabled = true
+//            }
 
-            if (contentIndex == News.content.size - 1) {
-                binding.btnNext.isEnabled = false
-            } else {
-                binding.btnNext.isEnabled = true
-            }
+//            if (contentIndex == News.content.size - 1) {
+//                binding.btnNext.isEnabled = false
+//            } else {
+//                binding.btnNext.isEnabled = true
+//            }
 
-            binding.btnNext?.setOnClickListener {
-                if (contentIndex < News.content.size - 1) {
-                    contentIndex++
-                    binding.txtIsiContent.text = News.content[contentIndex]
-                }
+//            binding.btnNext?.setOnClickListener {
+//                if (contentIndex < News.content.size - 1) {
+//                    contentIndex++
+//                    binding.txtIsiContent.text = News.content[contentIndex]
+//                }
+//
+//                if (contentIndex == News.content.size - 1) {
+//                    binding.btnNext.isEnabled = false
+//                }
+//
+//                binding.btnBack.isEnabled = true
+//            }
 
-                if (contentIndex == News.content.size - 1) {
-                    binding.btnNext.isEnabled = false
-                }
-
-                binding.btnBack.isEnabled = true
-            }
-
-            binding.btnBack?.setOnClickListener {
-                if (contentIndex > 0) {
-                    contentIndex--
-                    binding.txtIsiContent.text = News.content[contentIndex]
-                }
-
-                if (contentIndex == 0) {
-                    binding.btnBack.isEnabled = false
-                }
-                binding.btnNext.isEnabled = true
-            }
+//            binding.btnBack?.setOnClickListener {
+//                if (contentIndex > 0) {
+//                    contentIndex--
+//                    binding.txtIsiContent.text = News.content[contentIndex]
+//                }
+//
+//                if (contentIndex == 0) {
+//                    binding.btnBack.isEnabled = false
+//                }
+//                binding.btnNext.isEnabled = true
+//            }
         })
 
     }

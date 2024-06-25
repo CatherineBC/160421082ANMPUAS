@@ -9,18 +9,26 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.workDataOf
 import com.ubaya.a160421082uts.R
 import com.ubaya.a160421082uts.databinding.ActivityLoginBinding
 import com.ubaya.a160421082uts.viewmodel.UserViewModel
+import java.util.concurrent.TimeUnit
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
+class LoginActivity : AppCompatActivity(),UserLoginClick {
+//    private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: UserViewModel
     private lateinit var shared: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
+    private lateinit var dataBinding: ActivityLoginBinding
+    private lateinit var loginListener: UserLoginClick
+
 
     var userId : Int = 0
     var email : String = ""
@@ -39,8 +47,10 @@ class LoginActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        val view = binding.root
+//        binding = ActivityLoginBinding.inflate(layoutInflater)
+//        val view = binding.root
+        dataBinding = ActivityLoginBinding.inflate(layoutInflater)
+        val view =  dataBinding.root
         setContentView(view)
 
         var sharedFile = "com.ubaya.a160421082uts"
@@ -53,27 +63,29 @@ class LoginActivity : AppCompatActivity() {
             this.finish()
         }
 
+        dataBinding.loginlistener = this
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
 
 
-        binding.btnLogIn.setOnClickListener {
-            username = binding.txtUserName.text.toString()
-            pass = binding.txtPass.text.toString()
-            if (username != "" && pass != "") {
-                viewModel.login(pass, username)
-                observeViewModel()
+//        dataBinding.btnLogIn.setOnClickListener {
+//            username = dataBinding.txtUserName.text.toString()
+//            pass = dataBinding.txtPass.text.toString()
+//            if (username != "" && pass != "") {
+//                viewModel.login(pass, username)
+//                observeViewModel()
+//
+//            } else {
+//                Toast.makeText(
+//                    this,
+//                    "Email and Password must not be empty",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//        }
 
-            } else {
-                Toast.makeText(
-                    this,
-                    "Email and Password must not be empty",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-
-        binding.txtRegister.setOnClickListener {
+//
+        dataBinding.txtRegister.setOnClickListener {
             val intent = Intent(this,RegisterActivity::class.java)
             startActivity(intent)
 
@@ -81,11 +93,27 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    override fun onLoginClick(v: View) {
+        username = dataBinding.txtUserName.text.toString()
+        pass = dataBinding.txtPass.text.toString()
+        if (username != "" && pass != "") {
+            viewModel.login(username, pass)
+            observeViewModel()
+
+        } else {
+            Toast.makeText(
+                this,
+                "Email and Password must not be empty",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
 
     private fun observeViewModel() {
         viewModel.userLD.observe(this, Observer {User->
             if (User != null) {
-                userId = User.id?.toInt() ?: -1
+                userId = User.uid?.toInt() ?: -1
                 email = User.email.toString()
                 pass = User.password.toString()
                 username = User.username.toString()
@@ -116,6 +144,7 @@ class LoginActivity : AppCompatActivity() {
         })
 
     }
+
 }
 
 

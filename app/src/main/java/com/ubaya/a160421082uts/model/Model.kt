@@ -31,9 +31,10 @@ data class User(
     var password:String
 ) {
     @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
+    var uid: Int = 0
 }
 
+@Entity
 data class News(
     @ColumnInfo(name="title")
     var title:String,
@@ -44,7 +45,7 @@ data class News(
     @ColumnInfo(name="description")
     var description:String,
     @ColumnInfo(name="content")
-    var content:List<String>,
+    var content:String,
     @ColumnInfo(name="author_name")
     var author_name:String
 ) {
