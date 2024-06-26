@@ -1,36 +1,20 @@
 package com.ubaya.a160421082uts.viewmodel
 
 import android.app.Application
-import android.content.SharedPreferences
-import android.util.Log
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.navigation.Navigation
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.ubaya.a160421082uts.model.News
 import com.ubaya.a160421082uts.model.User
 import com.ubaya.a160421082uts.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import kotlin.coroutines.CoroutineContext
 
 class UserViewModel(application: Application):
     AndroidViewModel(application), CoroutineScope {
 //    val userLD = MutableLiveData<User?>()
-//    private val statusLD: MutableLiveData<String?> = MutableLiveData()
+    private val statusLD: MutableLiveData<String?> = MutableLiveData()
 //    val TAG = "volleyTag"
 //
 //
@@ -58,6 +42,38 @@ class UserViewModel(application: Application):
             db.UserDao().regisUser(user)
         }
     }
+
+    fun update(id: Int, password: String, firstName: String, lastName: String) {
+        launch {
+            val db = buildDb(getApplication())
+            db.UserDao().ubahPass(id, password, firstName, lastName)
+        }
+    }
+
+//    fun display(uid: Int){
+//        launch {
+//            val db = buildDb(
+//                getApplication()
+//            )
+//            db.UserDao().display(uid)
+//        }
+//    }
+
+    fun display(uid: Int) {
+        launch {
+            val db = buildDb(getApplication())
+            val user = db.UserDao().display(uid)
+            userLD.postValue(user)
+        }
+    }
+
+//    fun fetchUser(uid: Int) {
+//        launch {
+//            val db = buildDb(getApplication())
+//            val user = db.UserDao().display(uid)
+//            userLD.postValue(user)
+//        }
+//    }
 
 
 //    fun update(id:String, password:String, firstname :String, lastname:String) {
@@ -202,8 +218,10 @@ class UserViewModel(application: Application):
 //        q.add(stringRequest)
 //    }
 //
-//    fun getStatusLiveData(): MutableLiveData<String?> {
-//        return statusLD
-//    }
+    fun getStatusLiveData(): MutableLiveData<String?> {
+        return statusLD
+    }
+
+
 //
 }

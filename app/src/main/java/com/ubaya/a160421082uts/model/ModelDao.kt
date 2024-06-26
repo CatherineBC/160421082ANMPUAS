@@ -33,8 +33,11 @@ interface UserDao{
     @Query("SELECT * FROM User WHERE username = :username and password = :password")
     fun login(username: String, password: String): User
 
-    @Query("UPDATE User SET password = password WHERE uid = :uid")
-    fun ubahPass(uid:Int) //ini harus dijalankan setelah database dimigrasi. baru bole update habis migrasi gitu itu gunanya suspend
+    @Query("SELECT * FROM User WHERE uid = :uid")
+    fun display(uid: Int): User
+
+    @Query("UPDATE user SET password = :password, firstName = :firstName, lastName = :lastName WHERE uid = :id")
+    fun ubahPass(id: Int, password: String, firstName: String, lastName: String) //ini harus dijalankan setelah database dimigrasi. baru bole update habis migrasi gitu itu gunanya suspend
 
     @Delete
     fun deleteUser(user: User)

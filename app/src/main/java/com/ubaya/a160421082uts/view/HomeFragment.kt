@@ -29,12 +29,13 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-        viewModel.refresh()
+//        viewModel.refresh()
 
         binding.recView.layoutManager = LinearLayoutManager(context)
         binding.recView.adapter = homeListAdapter
 
         observeViewModel()
+        viewModel.refresh()
 
         binding.RefreshLayout.setOnRefreshListener {
             binding.recView.visibility = View.GONE

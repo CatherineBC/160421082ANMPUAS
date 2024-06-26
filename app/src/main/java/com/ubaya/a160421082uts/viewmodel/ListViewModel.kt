@@ -62,9 +62,8 @@ class ListViewModel(application: Application): AndroidViewModel(application),Cor
 //        queue?.add(stringRequest)
 
     }
-//    override fun onCleared() {
-//        super.onCleared()
-//        queue?.cancelAll(TAG)
-//    }
+    override fun onCleared() {
+        super.onCleared()
+    }
 
 }

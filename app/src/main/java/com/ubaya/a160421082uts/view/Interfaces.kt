@@ -19,3 +19,6 @@ interface NewsDetailClick{
 interface UserUpdateProfileClick{
     fun onUserUpdateProfile(v: View, obj: User)
 }
+interface UserLogoutClick{
+    fun onUserLogout(v: View)
+}

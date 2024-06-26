@@ -27,14 +27,10 @@ class HomeAdapter(val newsList:ArrayList<News>)  : RecyclerView.Adapter<HomeAdap
         return newsList.size
     }
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.binding.txtJudulBerita.text = newsList[position].title
-        holder.binding.txtAuthor.text = newsList[position].author_name
-        holder.binding.txtDeskripsi.text = newsList[position].description
+        holder.binding.news = newsList[position]
 
-        holder.binding.btnRead.setOnClickListener {
-            val action = HomeFragmentDirections.actionBaca(newsList[position].id.toString())
-            Navigation.findNavController(it).navigate(action)
-        }
+        holder.binding.detailListener = this
+
 
         val picasso = Picasso.Builder(holder.itemView.context)
         picasso.listener { picasso, uri, exception ->
