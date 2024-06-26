@@ -84,12 +84,8 @@ class RegisterActivity : AppCompatActivity(), UserRegisClick {
 //    }
 
     override fun onRegisClick(v: View) {
-            val username = dataBinding.txtUserReg.text.toString()
-            val email= dataBinding.txtEmail.text.toString()
             val password = dataBinding.txtPassword.text.toString()
             val repassword= dataBinding.txtRePassword.text.toString()
-            val firstname = dataBinding.txtFirstName.text.toString()
-            val lastname= dataBinding.txtLastNameProf.text.toString()
 
             if(password != repassword)
             {
