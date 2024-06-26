@@ -12,10 +12,10 @@ import com.ubaya.a160421082uts.databinding.ItemHomeBinding
 import com.ubaya.a160421082uts.model.News
 
 
-class HomeAdapter(val newsList:ArrayList<News>)  : RecyclerView.Adapter<HomeAdapter.NewsViewHolder>() {
+class HomeAdapter(val newsList:ArrayList<News>)  : RecyclerView.Adapter<HomeAdapter.NewsViewHolder>(),NewsDetailClick {
 
     class NewsViewHolder(var binding: ItemHomeBinding)
-        :RecyclerView.ViewHolder(binding.root) //nentuin siapa yang pakai adapternya, Klo ini brarti StudentListItem, layout yang terpisah yg namanya studentListItem
+        :RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding = ItemHomeBinding.inflate(
@@ -53,9 +53,17 @@ class HomeAdapter(val newsList:ArrayList<News>)  : RecyclerView.Adapter<HomeAdap
             })
         //function untuk tiap proses yang akan dimasukkan ke dalam list item. Masukkin per itemnya datanya ke textnya gitu.
     }
-    fun updateNewsList(newNewsList: ArrayList<News>) {
+    fun updateNewsList(newNewsList: List<News>) {
         newsList.clear()
         newsList.addAll(newNewsList)
         notifyDataSetChanged()
+    }
+
+    override fun onNewsDetailClick(v: View) {
+        val id = v.tag.toString().toInt()
+        val action = HomeFragmentDirections.actionBaca(id.toString())
+
+        Navigation.findNavController(v).navigate(action)
+
     }
 }

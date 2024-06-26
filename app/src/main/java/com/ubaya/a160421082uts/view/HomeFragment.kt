@@ -1,21 +1,13 @@
 package com.ubaya.a160421082uts.view
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
-import com.ubaya.a160421082uts.R
 import com.ubaya.a160421082uts.databinding.FragmentHomeBinding
 import com.ubaya.a160421082uts.viewmodel.ListViewModel
 

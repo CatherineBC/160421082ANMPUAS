@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.ubaya.a160421082uts.util.MIGRATION_1_2
-import com.ubaya.a160421082uts.util.MIGRATION_2_3
 
 
-@Database(entities = arrayOf(News::class, User::class), version =  2)
+
+@Database(entities = arrayOf(News::class, User::class), version =  1)
 abstract class ModelDatabase:RoomDatabase() {
     abstract fun NewsDao(): NewsDao
     abstract fun UserDao(): UserDao
@@ -21,7 +22,6 @@ abstract class ModelDatabase:RoomDatabase() {
             context.applicationContext,
             ModelDatabase::class.java, "newmodeldb")
             .addMigrations(MIGRATION_1_2)
-            .addMigrations(MIGRATION_2_3)
             .build()
 
 
